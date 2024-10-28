@@ -1,10 +1,9 @@
 package org.example;
-import CLI.CLI;
+import CLI.CLICommands;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        CLI cli = new CLI("C:\\Users\\abdallah\\Desktop\\New folder");
-        String[] arg = {"help", "a.txt"};
-        cli.redirectOutput(arg, true);
+        CLICommands cli = new CLICommands("C:\\Users\\abdallah\\Desktop\\New foldera");
+        cli.pwd();
     }
 }

@@ -1,11 +1,11 @@
-import CLI.CLI;
+import CLI.CLICommands;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-public class CLI_Test {
+public class CLICommands_Test {
     @Test
     void testCd() throws Exception {
-        CLI cli = new CLI("\\");
+        CLICommands cli = new CLICommands("\\");
         assertEquals("\\", cli.pwd());
     }
 }
