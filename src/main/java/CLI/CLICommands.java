@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class CLICommands {
@@ -31,7 +32,7 @@ public class CLICommands {
         }
 
         if (wrongDir) {
-            System.out.println("redirecting to ~");
+            System.out.println("redirecting to users home");
             this.currentDirectory = System.getProperty("user.home");
             return;
         }
@@ -63,7 +64,36 @@ public class CLICommands {
     public void ls(String[] args) {
         File dir = new File(currentDirectory);
         File[] files = dir.listFiles();
+
+        boolean showAll = false;
+        boolean reverse = false;
+
+        for (String arg : args) {
+            if (arg.equals("-a")) {
+                showAll = true;
+            } else if (arg.equals("-r")) {
+                reverse = !reverse;
+            } else {
+                System.err.println(arg + " is not known argument for ls.");
+                System.err.println("Available arguments -a and -r");
+                return;
+            }
+        }
+
         if (files != null) {
+            if (!showAll) {
+                files = Arrays.stream(files)
+                        .filter(file -> !file.getName().startsWith("."))
+                        .toArray(File[]::new);
+            }
+
+            if (reverse) {
+                Arrays.sort(files, Comparator.comparing(File::getName).reversed());
+            }
+            else {
+                Arrays.sort(files, Comparator.comparing(File::getName));
+            }
+
             for (File file : files) {
                 System.out.println(file.getName() + (file.isDirectory()? "/": ""));
             }
@@ -167,12 +197,11 @@ public class CLICommands {
             try (FileWriter fileWriter = new FileWriter(file, append)){
                     fileWriter.write(str);
                     fileWriter.close();
-                    System.out.println("");
             } catch (Exception e) {
-                System.err.println("An Error occured while writing: " + e.getCause());
+                System.err.println("An Error occurred while writing: " + e.getCause());
             }
         } catch (Exception e) {
-            System.err.println("An Error occured while writing: " + e.getCause());
+            System.err.println("An Error occurred while writing: " + e.getCause());
         }
     }
 
