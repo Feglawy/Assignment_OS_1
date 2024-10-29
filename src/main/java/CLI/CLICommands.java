@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class CLICommands {
@@ -19,8 +20,13 @@ public class CLICommands {
     }
 
     public CLICommands(String dir) {
+        if (dir.equals("~")) {
+            dir = System.getProperty("user.home");
+        }
+
         Path nPath = Paths.get(dir).normalize();
         boolean wrongDir = false;
+
         if (!Files.exists(nPath)) {
             System.err.println("Wrong path " + dir + " not found");
             wrongDir = true;
@@ -102,6 +108,7 @@ public class CLICommands {
         }
     }
 
+    /// creates a directory
     public void mkdir(String[] args) {
         if (args.length != 1) {
             System.err.println("Usage: mkdir <dir>");
@@ -115,6 +122,7 @@ public class CLICommands {
         }
     }
 
+    /// removes a directory
     public void rmdir(String[] args){
         if (args.length != 1) {
             System.out.println("Usage: rmdir <dir>");
@@ -128,6 +136,7 @@ public class CLICommands {
         }
     }
 
+    /// creates a file
     public void touch(String[] args) {
         if (args.length != 1) {
             System.out.println("Usage: touch <file>");
@@ -145,6 +154,7 @@ public class CLICommands {
         }
     }
 
+    /// moves/renames a file
     public void mv(String[] args) {
         if (args.length != 2) {
             System.out.println("Usage: mv <source> <destination>");
@@ -160,6 +170,7 @@ public class CLICommands {
         }
     }
 
+    /// removes a file
     public void rm(String[] args) {
         if (args.length != 1) {
             System.out.println("Usage: rm <file>");
@@ -173,6 +184,7 @@ public class CLICommands {
         }
     }
 
+    /// reads from a file
     public void cat(String[] args) {
         if (args.length != 1) {
             System.out.println("Usage: cat <filename>");
@@ -196,7 +208,6 @@ public class CLICommands {
             File file = new File(currentDirectory, filename);
             try (FileWriter fileWriter = new FileWriter(file, append)){
                     fileWriter.write(str);
-                    fileWriter.close();
             } catch (Exception e) {
                 System.err.println("An Error occurred while writing: " + e.getCause());
             }
@@ -205,10 +216,7 @@ public class CLICommands {
         }
     }
 
-    public void pipeLine(String[] args) {
-        
-    }
-
+    /// help screen
     public static void displayHelp() {
         System.out.println("Available commands:");
         System.out.println("pwd             -   Print current directory");
@@ -225,6 +233,7 @@ public class CLICommands {
         System.out.println("exit            -   Exit the CLI");
     }
 
+    /// exits the program
     public static void exit() {
         System.out.println("Exiting CLI.");
         System.exit(0);
