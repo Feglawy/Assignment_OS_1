@@ -202,6 +202,13 @@ public class CLICommands {
         }
     }
 
+    /// outputs a message
+    public void echo(String[] args) {
+        String out = String.join(" ", args).trim();
+        System.out.println(out);
+    }
+
+
     public void redirectOutput(String str, String filename, boolean append) {
         try {
             File file = new File(currentDirectory, filename);
