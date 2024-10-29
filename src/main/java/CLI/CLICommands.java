@@ -9,7 +9,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class CLICommands {
@@ -206,8 +205,8 @@ public class CLICommands {
     public void redirectOutput(String str, String filename, boolean append) {
         try {
             File file = new File(currentDirectory, filename);
-            try (FileWriter fileWriter = new FileWriter(file, append)){
-                    fileWriter.write(str);
+            try (FileWriter fileWriter = new FileWriter(file, append)) {
+                fileWriter.write(str);
             } catch (Exception e) {
                 System.err.println("An Error occurred while writing: " + e.getCause());
             }
@@ -219,18 +218,21 @@ public class CLICommands {
     /// help screen
     public static void displayHelp() {
         System.out.println("Available commands:");
-        System.out.println("pwd             -   Print current directory");
-        System.out.println("cd <dir>        -   Change directory");
-        System.out.println("ls              -   List files in current directory");
-        System.out.println("mkdir <dir>     -   Create a directory");
-        System.out.println("rmdir <dir>     -   Remove a directory");
-        System.out.println("touch <file>    -   Create an empty file");
+        System.out.println("pwd                         -   Print current directory");
+        System.out.println("cd <dir>                    -   Change directory");
+        System.out.println("ls                          -   List files in current directory");
+        System.out.println("mkdir <dir>                 -   Create a directory");
+        System.out.println("rmdir <dir>                 -   Remove a directory");
+        System.out.println("touch <file>                -   Create an empty file");
         System.out.println("mv <source> <destination>   -   Move/rename a file or directory");
-        System.out.println("rm <file>       -   Remove a file");
-        System.out.println("cat <file>      -   Display contents of a file");
-        System.out.println("> <file>        -   Redirect output to file");
-        System.out.println(">> <file>       -   Appends output to file");
-        System.out.println("exit            -   Exit the CLI");
+        System.out.println("rm <file>                   -   Remove a file");
+        System.out.println("cat <file>                  -   Display contents of a file");
+        System.out.println("exit                        -   Exit the CLI");
+
+        System.out.println("\nAvailable operators");
+        System.out.println("command > <file>            -   Redirect output to file");
+        System.out.println("command >> <file>           -   Appends output to file");
+        System.out.println("command | command           -   Pipe output from one command to another");
     }
 
     /// exits the program
