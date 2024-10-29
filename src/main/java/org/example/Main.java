@@ -1,4 +1,7 @@
 package org.example;
+import CLI.CLIContext;
+import CLI.Commands.*;
+
 import CLI.CLICommands;
 
 import java.io.ByteArrayOutputStream;
@@ -18,13 +21,15 @@ public class Main {
 //        System.setIn(System.in);
 //
 //        System.out.println(outputStream.toString());
-        CLICommands cliCommands = new CLICommands("~");
-        Scanner scanner = new Scanner(System.in);
 
-        while (true) {
-            cliCommands.pwd();
-            System.out.print("> ");
-            String input = scanner.nextLine();
-        }
+    CLIContext context = new CLIContext();
+    ExecuteArgs cd = new cdCommand(context);
+    Execute pwd = new pwdCommand(context);
+
+    pwd.execute();
+    String[] arg = {"../"};
+    cd.execute(arg);
+    pwd.execute();
+
     }
 }
