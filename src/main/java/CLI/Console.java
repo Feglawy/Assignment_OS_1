@@ -1,18 +1,18 @@
 package CLI;
 
 import CLI.Commands.CommandFactory;
-import CLI.Commands.Execute;
 import CLI.Commands.ExecuteArgs;
 import CLI.Commands.Help;
 
-import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Stack;
 
-public class CLI {
+
+public class Console {
     private final CLIContext context;
     private final CommandFactory commandFactory;
 
-    public CLI() {
+    public Console() {
         context = new CLIContext();
         this.commandFactory = new CommandFactory(context);
     }
@@ -24,26 +24,27 @@ public class CLI {
         while (true) {
             System.out.print(context.getCurrentDirectory() + " > ");
             String input = scanner.nextLine();
-            executeCommand(input);
+            Stack<Command> cmdStk = Parser.parseCommands(input);
+
+            executeCommands(cmdStk);
         }
     }
 
-    private void executeCommand(String commandLine) {
-        String[] parts = commandLine.split(" ");
-        String commandName = parts[0];
-        String[] args = Arrays.copyOfRange(parts, 1, parts.length);
+    private void executeCommands(Stack<Command> stack) {
+        while (!stack.isEmpty()) {
+            Command cmd = stack.pop();
+            if (cmd.cmd().equalsIgnoreCase("help")) {
+                displayHelp(cmd.args());
+                return;
+            }
 
-        if (commandName.equalsIgnoreCase("help")) {
-            displayHelp(args);
-            return;
+            ExecuteArgs command = commandFactory.getExecuteCommand(cmd.cmd());
+            if(command == null) {
+                System.err.println(cmd.cmd() + " is not defined.");
+                return;
+            }
+            command.execute(cmd.args());
         }
-
-        ExecuteArgs command = commandFactory.getExecuteCommand(commandName);
-        if(command == null) {
-            System.err.println(commandName + " is not defined.");
-            return;
-        }
-        command.execute(args);
     }
 
     private void displayHelp(String[] args) {

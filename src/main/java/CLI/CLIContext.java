@@ -45,7 +45,7 @@ public class CLIContext
         }
 
         if (!wrongDir) { // set current directory to the new one if all checks are passed
-            currentDirectory = nPath.toString();
+            currentDirectory = nPath.toAbsolutePath().toString();
         }
     }
 
