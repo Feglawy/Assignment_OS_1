@@ -16,15 +16,17 @@ public class touchCommand extends Command implements ExecuteArgs, Help {
             System.err.println("Missing argument: <file>");
             return;
         }
-        File file = new File(context.getCurrentDirectory(), args[0]);
-        try {
-            if (file.createNewFile()) {
-                System.out.println("File created: " + args[0]);
-            } else {
-                System.out.println("File already exists.");
+        for (String arg : args) {
+            File file = new File(context.getCurrentDirectory(), arg);
+            try {
+                if (file.createNewFile()) {
+                    System.out.println("File created: " + arg);
+                } else {
+                    System.out.println("File already exists.");
+                }
+            } catch (IOException e) {
+                System.err.println("Failed to create file.");
             }
-        } catch (IOException e) {
-            System.err.println("Failed to create file.");
         }
     }
 

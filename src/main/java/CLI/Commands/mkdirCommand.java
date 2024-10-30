@@ -15,11 +15,13 @@ public class mkdirCommand extends Command implements ExecuteArgs, Help{
             System.err.println("Missing argument: directory name");
             return;
         }
-        File dir = new File(context.getCurrentDirectory(), args[0]);
-        if (dir.mkdir()) {
-            System.out.println("Directory created successfully");
-        }else {
-            System.err.println("Failed to create directory");
+        for (String arg : args) {
+            File dir = new File(context.getCurrentDirectory(), arg);
+            if (dir.mkdir()) {
+                System.out.println("Directory created successfully");
+            }else {
+                System.err.println("Failed to create directory");
+            }
         }
     }
 

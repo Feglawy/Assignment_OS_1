@@ -15,11 +15,13 @@ public class rmCommand extends Command implements ExecuteArgs, Help {
             System.err.println("Missing arguments: <file>");
             return;
         }
-        File file = new File(context.getCurrentDirectory(), args[0]);
-        if (file.delete()) {
-            System.out.println("File removed: "+ args[0]);
-        } else {
-            System.err.println("Couldn't remove " + args[0]);
+        for (String arg : args) {
+            File file = new File(context.getCurrentDirectory(), arg);
+            if (file.delete()) {
+                System.out.println("File removed: "+ arg);
+            } else {
+                System.err.println("Couldn't remove " + arg);
+            }
         }
     }
 

@@ -16,11 +16,13 @@ public class rmdirCommand extends Command implements ExecuteArgs, Help{
             return;
         }
 
-        File dir = new File(context.getCurrentDirectory(), args[0]);
-        if (dir.isDirectory() && dir.delete()) {
-            System.out.println("Directory deleted successfully");
-        }else {
-            System.err.println("Failed to delete directory");
+        for (String arg : args) {
+            File dir = new File(context.getCurrentDirectory(), arg);
+            if (dir.isDirectory() && dir.delete()) {
+                System.out.println("Directory deleted successfully");
+            }else {
+                System.err.println("Failed to delete directory");
+            }
         }
     }
 
