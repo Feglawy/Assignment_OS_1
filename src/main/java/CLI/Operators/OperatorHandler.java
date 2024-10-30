@@ -18,8 +18,14 @@ public class OperatorHandler {
 
         execute.executeCommands(stack);
         switch (opcmd.operator()) {
-            case ">>" -> redirectOperator.redirect(outputStream.toString(), opcmd.args()[0], true);
-            case ">" -> redirectOperator.redirect(outputStream.toString(), opcmd.args()[0], false);
+            case ">>" -> {
+                redirectOperator.redirect(outputStream.toString(), opcmd.args()[0], true);
+                outputStream.reset();
+            }
+            case ">" -> {
+                redirectOperator.redirect(outputStream.toString(), opcmd.args()[0], false);
+                outputStream.reset();
+            }
             case "|" -> {
                 ExecuteArgs commandExecutable = commandFactory.getExecuteCommand(opcmd.cmd());
                 String[] commandArgs = outputStream.toString().trim().split(" ");

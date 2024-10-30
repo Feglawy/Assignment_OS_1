@@ -4,9 +4,7 @@ import CLI.Commands.CommandFactory;
 import CLI.Commands.ExecuteArgs;
 import CLI.Commands.Help;
 import CLI.Operators.*;
-        
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+
 import java.util.Stack;
 
 public class CommandExecutor implements IExecutor {
@@ -20,26 +18,6 @@ public class CommandExecutor implements IExecutor {
         while (!stack.isEmpty()) {
             Command cmd = stack.pop();
             if (cmd.hasOperator()) {
-//                final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//                final PrintStream originalOut = System.out;
-//
-//                System.setOut(new PrintStream(outputStream));
-//
-//                executeCommands(stack);
-//                switch (cmd.operator()) {
-//                    case ">>" -> redirectOperator.redirect(outputStream.toString(), cmd.args()[0], true);
-//                    case ">" -> redirectOperator.redirect(outputStream.toString(), cmd.args()[0], false);
-//                    case "|" -> {
-//                        ExecuteArgs commandExecutable = commandFactory.getExecuteCommand(cmd.cmd());
-//                        String[] commandArgs = outputStream.toString().trim().split(" ");
-//                        outputStream.reset();
-//                        pipeOperator.pipe(commandExecutable, commandArgs);
-//                    }
-//                }
-//
-//                System.setOut(originalOut);
-//                System.out.println(outputStream.toString().trim());
-//                outputStream.reset();
                 OperatorHandler.handle(stack, cmd, commandFactory, this);
                 return;
             }
