@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 
 public class redirectOperator {
-    public void redirect(String input, String filePath, boolean append) {
+    public static void  redirect(String input, String filePath, boolean append) {
         try {
             File file = new File(filePath);
             try (FileWriter fileWriter = new FileWriter(file, append)) {

@@ -1,5 +1,7 @@
 package CLI;
 
+import CLI.Commands.CommandFactory;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -7,7 +9,6 @@ import java.nio.file.Paths;
 public class CLIContext
 {
     private String currentDirectory;
-
     public CLIContext() {
         setCurrentDirectory(System.getProperty("user.dir"));
     }
