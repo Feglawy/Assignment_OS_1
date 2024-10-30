@@ -28,7 +28,7 @@ public class Console {
             String[] commands = input.trim().split("&");
 
             for (String command : commands) {
-                Stack<Command> cmdStk = Parser.parseCommands(input);
+                Stack<Command> cmdStk = Parser.parseCommands(command);
                 CommandExecutor executor = new CommandExecutor(commandFactory);
                 executor.executeCommands(cmdStk);
             }
