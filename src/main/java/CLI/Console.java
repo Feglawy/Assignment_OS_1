@@ -24,9 +24,14 @@ public class Console {
         while (true) {
             System.out.print(context.getCurrentDirectory() + " > ");
             String input = scanner.nextLine();
-            Stack<Command> cmdStk = Parser.parseCommands(input);
-            CommandExecutor executor = new CommandExecutor(commandFactory);
-            executor.executeCommands(cmdStk);
+
+            String[] commands = input.trim().split("&");
+
+            for (String command : commands) {
+                Stack<Command> cmdStk = Parser.parseCommands(input);
+                CommandExecutor executor = new CommandExecutor(commandFactory);
+                executor.executeCommands(cmdStk);
+            }
         }
     }
 }
