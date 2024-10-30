@@ -26,6 +26,6 @@ public class rmdirCommand extends Command implements ExecuteArgs, Help{
 
     @Override
     public void help() {
-        System.out.println("Usage: rmdir <dir>      - Removes a directory");
+        System.out.println("Usage: rmdir <dir> - Removes a directory.");
     }
 }

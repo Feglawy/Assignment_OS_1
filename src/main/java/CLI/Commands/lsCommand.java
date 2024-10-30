@@ -65,10 +65,10 @@ public class lsCommand extends Command implements Execute, ExecuteArgs, Help{
 
     @Override
     public void help() {
-        System.out.println("Usage : ls  <arguments:optional>    - lists files in the current directory");
+        System.out.println("Usage : ls  <arguments:optional>    - lists files in the current directory.");
         System.out.println("arguments: ");
-        System.out.println("arg: -r                             - reverses order of files");
-        System.out.println("arg: -a                             - displays hidden files");
+        System.out.println("arg: -r                             - reverses order of files.");
+        System.out.println("arg: -a                             - displays hidden files.");
 
     }
 }

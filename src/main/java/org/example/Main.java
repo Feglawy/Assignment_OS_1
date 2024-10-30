@@ -1,12 +1,10 @@
 package org.example;
+import CLI.CLI;
 import CLI.CLIContext;
 import CLI.Commands.*;
-
-import CLI.CLICommands;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
+import CLI.Command;
+import CLI.Parser;
+import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,14 +20,8 @@ public class Main {
 //
 //        System.out.println(outputStream.toString());
 
-    CLIContext context = new CLIContext();
-    ExecuteArgs cd = new cdCommand(context);
-    Execute pwd = new pwdCommand(context);
-
-    pwd.execute();
-    String[] arg = {"../"};
-    cd.execute(arg);
-    pwd.execute();
+    CLI cli = new CLI();
+    cli.start();
 
     }
 }

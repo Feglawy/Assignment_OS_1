@@ -25,6 +25,6 @@ public class mkdirCommand extends Command implements ExecuteArgs, Help{
 
     @Override
     public void help() {
-        System.out.println("Usage: mkdir <dir>  - Creates a directory.");
+        System.out.println("Usage: mkdir <dir> - Creates a directory.");
     }
 }

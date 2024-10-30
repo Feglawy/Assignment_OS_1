@@ -31,7 +31,6 @@ public class mvCommand extends Command implements ExecuteArgs, Help{
 
     @Override
     public void help() {
-        System.out.println("Usage: mv <source> <destination>");
-        System.out.println("Move/rename a file or directory");
+        System.out.println("Usage: mv <source> <destination> - Move/rename a file or directory.");
     }
 }

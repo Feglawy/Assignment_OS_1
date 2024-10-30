@@ -25,6 +25,6 @@ public class rmCommand extends Command implements ExecuteArgs, Help {
 
     @Override
     public void help() {
-        System.out.println("Usage: rm <file>    - Removes a file");
+        System.out.println("Usage: rm <file> - Removes a file.");
     }
 }

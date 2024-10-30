@@ -19,6 +19,6 @@ public class echoCommand extends Command implements ExecuteArgs, Help {
 
     @Override
     public void help() {
-        System.out.println("Usage: echo <message>       - prints a message.");
+        System.out.println("Usage: echo <message> - prints a message.");
     }
 }

@@ -28,6 +28,6 @@ public class cdCommand extends Command implements ExecuteArgs, Help{
 
     @Override
     public void help() {
-        System.out.println("Usage: cd <dir>");
+        System.out.println("Usage: cd <dir> - Changes directory.");
     }
 }

@@ -32,6 +32,6 @@ public class catCommand extends Command implements ExecuteArgs ,Help {
 
     @Override
     public void help() {
-        System.out.println("cat <file>      - Reads a file and outputs its content.");
+        System.out.println("cat <file> - Reads a file and outputs its content.");
     }
 }

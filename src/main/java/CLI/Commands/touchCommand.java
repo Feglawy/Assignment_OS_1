@@ -30,6 +30,6 @@ public class touchCommand extends Command implements ExecuteArgs, Help {
 
     @Override
     public void help() {
-        System.out.println("Usage: touch <file>     - Creates a file");
+        System.out.println("Usage: touch <file> - Creates a file.");
     }
 }
