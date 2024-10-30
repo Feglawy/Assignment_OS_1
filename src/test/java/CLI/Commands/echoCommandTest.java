@@ -35,6 +35,11 @@ class echoCommandTest {
     }
 
     @Test
+    public void echoShouldNotThrow(){
+        assertDoesNotThrow(()-> cmd.execute(new String[]{}));
+    }
+
+    @Test
     void echoTest() {
         String expectedOutput = "Hello, World!";
         cmd.execute(expectedOutput.trim().split(" "));

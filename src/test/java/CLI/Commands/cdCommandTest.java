@@ -21,6 +21,14 @@ class cdCommandTest {
     }
 
     @Test
+    public void cdShouldNotThrow() {
+        assertAll(
+                () -> assertDoesNotThrow(()-> cmd.execute(new String[]{})),
+                () -> assertDoesNotThrow(()-> cmd.execute(new String[]{""}))
+        );
+    }
+
+    @Test
     public void cdHomeTest(){
         cmd.execute(new String[]{"~"});
         assertEquals(System.getProperty("user.home"), context.getCurrentDirectory());

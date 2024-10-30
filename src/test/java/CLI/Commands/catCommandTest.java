@@ -48,6 +48,11 @@ class catCommandTest {
     }
 
     @Test
+    void catShouldNotThrowTest() {
+        assertDoesNotThrow(()-> {cmd.execute(new String[]{""});}); // missing argument
+    }
+
+    @Test
     void catTest() {
         String ExpectedOutput = "Hello, World!";
         writeToFile(ExpectedOutput);
