@@ -15,14 +15,21 @@ public class cdCommand extends Command implements ExecuteArgs, Help{
             System.err.println("missing argument <dir>");
             return;
         }
+        String pathArg = args[0];
+        pathArg = pathArg.replace("~", System.getProperty("user.home")); // replaces ~ with the user's home path
 
-        String newPath = args[0];
-        File newDir = new File(context.getCurrentDirectory(), newPath);
+        File dirPath;
 
-        if (newDir.isDirectory() && newDir.exists()) {
-            context.setCurrentDirectory(newDir.getAbsolutePath());
+        if (new File(pathArg).isAbsolute()) {
+            dirPath =  new File(pathArg);
         } else {
-            System.out.println("cd: no such directory: " + newPath);
+            dirPath = new File(context.getCurrentDirectory(), pathArg);
+        }
+
+        if (dirPath.isDirectory() && dirPath.exists()) {
+            context.setCurrentDirectory(dirPath.getAbsolutePath());
+        } else {
+            System.out.println("cd - no such directory: " + pathArg);
         }
     }
 
