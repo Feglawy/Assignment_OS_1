@@ -8,11 +8,9 @@ import java.util.Stack;
 /// The main starting point of The cli program
 public class Console {
     private final CLIContext context;
-    private final CommandFactory commandFactory;
 
     public Console() {
         context = new CLIContext();
-        this.commandFactory = new CommandFactory(context);
     }
 
     public void start() {
@@ -27,7 +25,7 @@ public class Console {
 
             for (String command : commands) {
                 Stack<Command> cmdStk = Parser.parseCommands(command);
-                CommandExecutor executor = new CommandExecutor(commandFactory);
+                CommandExecutor executor = new CommandExecutor(context);
                 executor.executeCommands(cmdStk);
             }
         }

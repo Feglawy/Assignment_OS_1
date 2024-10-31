@@ -8,9 +8,11 @@ import CLI.Operators.*;
 import java.util.Stack;
 
 public class CommandExecutor implements IExecutor {
+    CLIContext context;
     CommandFactory commandFactory;
-    public CommandExecutor(CommandFactory commandFactory) {
-        this.commandFactory = commandFactory;
+    public CommandExecutor(CLIContext context) {
+        this.context = context;
+        this.commandFactory = new CommandFactory(context);
     }
 
     @Override
@@ -18,7 +20,7 @@ public class CommandExecutor implements IExecutor {
         while (!stack.isEmpty()) {
             Command cmd = stack.pop();
             if (cmd.hasOperator()) {
-                OperatorHandler.handle(stack, cmd, commandFactory, this);
+                OperatorHandler.handle(stack, cmd, context, commandFactory, this);
                 return;
             }
             executeCommand(cmd);
