@@ -21,10 +21,19 @@ public class mvCommand extends Command implements IExecuteArgs, IHelp {
         }
         Path source = Paths.get(context.getCurrentDirectory(), args[0]);
         Path destination = Paths.get(context.getCurrentDirectory(), args[1]);
+
+        Path sourceParent = source.toAbsolutePath().getParent();
+        Path destinationParent = destination.toAbsolutePath().getParent();
+
+        boolean renamed =  sourceParent.equals(destinationParent) ;
+
         try {
             Files.move(source, destination);
-            System.out.println("Moved " + args[0] + " to " + args[1]);
-        } catch (IOException e) {
+            if (renamed)
+                System.out.println("Renamed " + args[0] + " to " + args[1]);
+            else
+                System.out.println("Moved " + args[0] + " to " + args[1]);
+        } catch (Exception e) {
             System.err.println("Failed to move file.");
         }
     }
