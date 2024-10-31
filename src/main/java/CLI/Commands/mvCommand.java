@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class mvCommand extends Command implements ExecuteArgs, Help{
+public class mvCommand extends Command implements IExecuteArgs, IHelp {
     public mvCommand(CLIContext context) {
         super(context);
     }

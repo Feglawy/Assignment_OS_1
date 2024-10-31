@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandFactory {
-    private final Map<String, ExecuteArgs> executeMap = new HashMap<>();
-    private final Map<String, Help> helpMap = new HashMap<>();
+    private final Map<String, IExecuteArgs> executeMap = new HashMap<>();
+    private final Map<String, IHelp> helpMap = new HashMap<>();
 
     public CommandFactory(CLIContext context) {
         registerCommands(context);
@@ -28,23 +28,23 @@ public class CommandFactory {
     }
 
     private void addCommand(String name, Command command) {
-        if (command instanceof ExecuteArgs) {
-            executeMap.put(name, (ExecuteArgs) command);
+        if (command instanceof IExecuteArgs) {
+            executeMap.put(name, (IExecuteArgs) command);
         }
-        if (command instanceof Help) {
-            helpMap.put(name, (Help) command);
+        if (command instanceof IHelp) {
+            helpMap.put(name, (IHelp) command);
         }
     }
 
-    public ExecuteArgs getExecuteCommand(String name) {
+    public IExecuteArgs getExecuteCommand(String name) {
         return executeMap.get(name);
     }
 
-    public Help getHelpCommand(String name) {
+    public IHelp getHelpCommand(String name) {
         return helpMap.get(name);
     }
 
-    public Map<String, Help> getAllHelpCommands() {
+    public Map<String, IHelp> getAllHelpCommands() {
         return helpMap;
     }
 }

@@ -1,5 +1,5 @@
 package CLI.Commands;
 
-public interface ExecuteArgs {
+public interface IExecuteArgs {
     public void execute(String[] args);
 }

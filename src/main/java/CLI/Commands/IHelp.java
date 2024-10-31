@@ -1,5 +1,5 @@
 package CLI.Commands;
 
-public interface Help {
+public interface IHelp {
     public void help();
 }

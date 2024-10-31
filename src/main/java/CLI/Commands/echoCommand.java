@@ -2,7 +2,7 @@ package CLI.Commands;
 
 import CLI.CLIContext;
 
-public class echoCommand extends Command implements ExecuteArgs, Help {
+public class echoCommand extends Command implements IExecuteArgs, IHelp {
     public echoCommand(CLIContext context) {
         super(context);
     }

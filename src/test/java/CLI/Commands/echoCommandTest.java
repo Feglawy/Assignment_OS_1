@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,7 +15,7 @@ class echoCommandTest {
     private final PrintStream originalOut = System.out;
 
     private CLIContext context;
-    private ExecuteArgs cmd;
+    private IExecuteArgs cmd;
 
     @BeforeEach
     public void setUp() {

@@ -7,7 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
+/// Command input parser
 public class Parser {
+
+    /// parses Command line with a lot of commands in it
     public static Stack<Command> parseCommands(String commandLine) {
         List<String> cmdArr = new ArrayList<String>();
 
@@ -31,6 +34,7 @@ public class Parser {
         return cmdStk;
     }
 
+    /// parses Command line with single command
     public static Command parseCommand(String commandLine) {
         String[] parts = commandLine.trim().split(" ");
         String operator = null;

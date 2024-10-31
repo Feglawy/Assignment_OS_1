@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class touchCommandTest {
     private final String TEMP_TEST_FILE = "test_file.txt";
     private CLIContext context;
-    private ExecuteArgs touch;
+    private IExecuteArgs touch;
 
     @BeforeEach
     public void setUp() {

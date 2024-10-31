@@ -1,5 +1,5 @@
 package CLI.Commands;
 
-public interface Execute {
+public interface IExecute {
     public void execute();
 }

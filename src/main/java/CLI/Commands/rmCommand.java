@@ -4,7 +4,7 @@ import CLI.CLIContext;
 
 import java.io.File;
 
-public class rmCommand extends Command implements ExecuteArgs, Help {
+public class rmCommand extends Command implements IExecuteArgs, IHelp {
     public rmCommand(CLIContext context) {
         super(context);
     }

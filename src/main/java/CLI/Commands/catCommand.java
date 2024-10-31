@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class catCommand extends Command implements ExecuteArgs ,Help {
+public class catCommand extends Command implements IExecuteArgs, IHelp {
     public catCommand(CLIContext context) {
         super(context);
     }

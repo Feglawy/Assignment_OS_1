@@ -1,18 +1,16 @@
 package CLI.Commands;
 
 import CLI.CLIContext;
-import CLI.Parser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class cdCommandTest {
     private CLIContext context;
-    private ExecuteArgs cmd;
+    private IExecuteArgs cmd;
 
     @BeforeEach
     public void setUp() {

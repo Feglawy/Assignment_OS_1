@@ -1,8 +1,8 @@
 package CLI;
 
 import CLI.Commands.CommandFactory;
-import CLI.Commands.ExecuteArgs;
-import CLI.Commands.Help;
+import CLI.Commands.IExecuteArgs;
+import CLI.Commands.IHelp;
 import CLI.Operators.*;
 
 import java.util.Stack;
@@ -31,7 +31,7 @@ public class CommandExecutor implements IExecutor {
             return;
         }
 
-        ExecuteArgs command = commandFactory.getExecuteCommand(cmd.cmd());
+        IExecuteArgs command = commandFactory.getExecuteCommand(cmd.cmd());
         if(command == null) {
             System.err.println(cmd.cmd() + " is not defined.");
             return;
@@ -46,7 +46,7 @@ public class CommandExecutor implements IExecutor {
                 System.out.println("_____");
             });
         } else {
-            Help help = commandFactory.getHelpCommand(args[0]);
+            IHelp help = commandFactory.getHelpCommand(args[0]);
             if (help != null) {
                 help.help();
             } else {

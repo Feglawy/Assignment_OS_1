@@ -30,7 +30,7 @@ class pwdCommandTest {
     @Test
     public void pwdTest() {
         CLIContext context = new CLIContext("~");
-        Execute cmd = new pwdCommand(context);
+        IExecute cmd = new pwdCommand(context);
         cmd.execute();
 
         String ExpectedOutput = System.getProperty("user.home");
@@ -42,7 +42,7 @@ class pwdCommandTest {
     @Test
     public void pwdRootTest() {
         CLIContext context = new CLIContext("/");
-        Execute cmd = new pwdCommand(context);
+        IExecute cmd = new pwdCommand(context);
         cmd.execute();
 
         String ExpectedOutput;

@@ -2,7 +2,7 @@ package CLI.Commands;
 
 import CLI.CLIContext;
 
-public class pwdCommand extends Command implements  ExecuteArgs, Execute, Help{
+public class pwdCommand extends Command implements IExecuteArgs, IExecute, IHelp {
     public pwdCommand(CLIContext context) {
         super(context);
     }

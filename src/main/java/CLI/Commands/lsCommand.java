@@ -6,7 +6,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class lsCommand extends Command implements Execute, ExecuteArgs, Help{
+public class lsCommand extends Command implements IExecute, IExecuteArgs, IHelp {
     public lsCommand(CLIContext context) {
         super(context);
     }

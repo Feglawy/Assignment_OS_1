@@ -5,7 +5,7 @@ import CLI.CLIContext;
 import java.io.File;
 import java.io.IOException;
 
-public class touchCommand extends Command implements ExecuteArgs, Help {
+public class touchCommand extends Command implements IExecuteArgs, IHelp {
     public touchCommand(CLIContext context) {
         super(context);
     }

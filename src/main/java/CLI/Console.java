@@ -1,13 +1,11 @@
 package CLI;
 
 import CLI.Commands.CommandFactory;
-import CLI.Commands.ExecuteArgs;
-import CLI.Commands.Help;
 
 import java.util.Scanner;
 import java.util.Stack;
 
-
+/// The main starting point of The cli program
 public class Console {
     private final CLIContext context;
     private final CommandFactory commandFactory;

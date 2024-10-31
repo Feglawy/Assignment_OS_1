@@ -2,7 +2,7 @@ package CLI.Commands;
 
 import CLI.CLIContext;
 
-public class exitCommand extends Command implements Execute, ExecuteArgs, Help {
+public class exitCommand extends Command implements IExecute, IExecuteArgs, IHelp {
     protected exitCommand(CLIContext context) {
         super(context);
     }

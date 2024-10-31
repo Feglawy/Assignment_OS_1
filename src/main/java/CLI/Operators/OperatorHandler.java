@@ -2,7 +2,7 @@ package CLI.Operators;
 
 import CLI.Command;
 import CLI.Commands.CommandFactory;
-import CLI.Commands.ExecuteArgs;
+import CLI.Commands.IExecuteArgs;
 import CLI.IExecutor;
 
 import java.io.ByteArrayOutputStream;
@@ -27,7 +27,7 @@ public class OperatorHandler {
                 outputStream.reset();
             }
             case "|" -> {
-                ExecuteArgs commandExecutable = commandFactory.getExecuteCommand(opcmd.cmd());
+                IExecuteArgs commandExecutable = commandFactory.getExecuteCommand(opcmd.cmd());
                 String[] commandArgs = outputStream.toString().trim().split(" ");
                 outputStream.reset();
                 pipeOperator.pipe(commandExecutable, commandArgs);
@@ -35,7 +35,13 @@ public class OperatorHandler {
         }
 
         System.setOut(originalOut);
-        System.out.println(outputStream.toString().trim());
+
+        // if there is an output print it
+        String output = outputStream.toString().trim();
+        if (!output.isEmpty()) {
+            System.out.println(output);
+        }
+
         outputStream.reset();
     }
 }

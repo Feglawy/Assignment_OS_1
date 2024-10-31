@@ -14,7 +14,7 @@ class catCommandTest {
     private final PrintStream originalOut = System.out;
 
     private CLIContext context;
-    private ExecuteArgs cmd;
+    private IExecuteArgs cmd;
 
     private final String fileName = "a.txt";
     private File file;
