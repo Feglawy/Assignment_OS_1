@@ -3,18 +3,20 @@ package CLI.Commands;
 import CLI.CLIContext;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class lsCommandTest {
     private final String TEST_DIR = "test_ls_dir";
-    private final String[] testFilesArr = {"a", "b", "c"};
+    private final List<String> TEST_FILES_ARR = Arrays.asList(".a", "b", "c", "d");
+    private final List<String> TEST_FILES_ARR_NO_HIDDEN = Arrays.asList("b", "c", "d");
 
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -32,7 +34,7 @@ class lsCommandTest {
         assertTrue(dir.mkdir(), "Test Directory created successfully");
 
         context.setCurrentDirectory(dir.getAbsolutePath()); // changes current directory to the test_dir
-        for (String file : testFilesArr) {
+        for (String file : TEST_FILES_ARR) {
             File temp = new File(context.getCurrentDirectory(), file);
             assertDoesNotThrow(temp::createNewFile);
         }
@@ -43,29 +45,39 @@ class lsCommandTest {
 
     @Test
     public void lsTest() {
-        ls.execute(new String[]{});
-        String ExpectedOutput = String.join("\r\n", testFilesArr);;
+        ls.execute(new String[] {});
+        String ExpectedOutput = String.join("\r\n", TEST_FILES_ARR_NO_HIDDEN);
         String actualOutput = outputStream.toString().trim();
 
         assertEquals(ExpectedOutput, actualOutput);
     }
 
     @Test
-    @Disabled("Not implemented yet")
     public void lsHiddenTest() {
+        ls.execute(new String[] { "-a" });
 
+        String ExpectedOutput = String.join("\r\n", TEST_FILES_ARR);
+        String actualOutput = outputStream.toString().trim();
+
+        assertEquals(ExpectedOutput, actualOutput);
     }
 
     @Test
-    @Disabled("Not implemented yet")
     public void lsRevertTest() {
+        ls.execute(new String[] { "-r" });
+        String ExpectedOutput = String.join("\r\n", TEST_FILES_ARR_NO_HIDDEN.reversed());
+        String actualOutput = outputStream.toString().trim();
 
+        assertEquals(ExpectedOutput, actualOutput);
     }
 
     @Test
-    @Disabled("Not implemented yet")
     public void lsHiddenRevertTest() {
+        ls.execute(new String[] { "-r", "-a" });
+        String ExpectedOutput = String.join("\r\n", TEST_FILES_ARR.reversed());
+        String actualOutput = outputStream.toString().trim();
 
+        assertEquals(ExpectedOutput, actualOutput);
     }
 
     @AfterEach
