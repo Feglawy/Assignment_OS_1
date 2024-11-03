@@ -6,11 +6,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandFactory {
+    private static CommandFactory instance;
     private final Map<String, IExecuteArgs> executeMap = new HashMap<>();
     private final Map<String, IHelp> helpMap = new HashMap<>();
 
-    public CommandFactory() {
+    private CommandFactory() {
         registerCommands();
+    }
+
+    public static CommandFactory getInstance() {
+        if (instance == null) {
+            instance = new CommandFactory();
+        }
+        return instance;
     }
 
     private void registerCommands() {

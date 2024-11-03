@@ -2,6 +2,7 @@ package CLI.Operators;
 
 import CLI.CLIContext;
 import CLI.Command;
+import CLI.CommandExecutor;
 import CLI.Commands.CommandFactory;
 import CLI.Commands.IExecuteArgs;
 import CLI.IExecutor;
@@ -12,7 +13,7 @@ import java.io.PrintStream;
 import java.util.Stack;
 
 public class OperatorHandler {
-    public static void handle(Stack<Command>stack, Command opcmd, CommandFactory commandFactory, IExecutor execute) {
+    public static void handle(Stack<Command>stack, Command opcmd, IExecutor execute) {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream originalOut = System.out;
 
@@ -33,7 +34,7 @@ public class OperatorHandler {
                 outputStream.reset();
             }
             case "|" -> {
-                IExecuteArgs commandExecutable = commandFactory.getExecuteCommand(opcmd.cmd());
+                IExecuteArgs commandExecutable = CommandFactory.getInstance().getExecuteCommand(opcmd.cmd());
                 String[] commandArgs = outputStream.toString().trim().split(" ");
                 outputStream.reset();
                 pipeOperator.pipe(commandExecutable, commandArgs);

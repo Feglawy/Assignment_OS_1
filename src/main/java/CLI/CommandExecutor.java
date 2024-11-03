@@ -12,7 +12,7 @@ public class CommandExecutor implements IExecutor {
     CommandFactory commandFactory;
     public CommandExecutor() {
         this.context = CLIContext.getInstance();
-        this.commandFactory = new CommandFactory();
+        this.commandFactory = CommandFactory.getInstance();
     }
 
     @Override
@@ -20,7 +20,7 @@ public class CommandExecutor implements IExecutor {
         while (!stack.isEmpty()) {
             Command cmd = stack.pop();
             if (cmd.hasOperator()) {
-                OperatorHandler.handle(stack, cmd, commandFactory, this);
+                OperatorHandler.handle(stack, cmd, this);
                 return;
             }
             executeCommand(cmd);
