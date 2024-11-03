@@ -1,7 +1,5 @@
 package CLI.Commands;
 
-import CLI.CLIContext;
-
 import java.util.HashMap;
 import java.util.Map;
 

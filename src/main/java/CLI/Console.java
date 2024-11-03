@@ -1,7 +1,5 @@
 package CLI;
 
-import CLI.Commands.CommandFactory;
-
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -14,19 +12,19 @@ public class Console {
     }
 
     public void start() {
-        Scanner scanner = new Scanner(System.in);
+        try (Scanner scanner = new Scanner(System.in)) {
+            //noinspection InfiniteLoopStatement
+            while (true) {
+                System.out.print(context.getCurrentDirectory() + " > ");
+                String input = scanner.nextLine();
 
-        //noinspection InfiniteLoopStatement
-        while (true) {
-            System.out.print(context.getCurrentDirectory() + " > ");
-            String input = scanner.nextLine();
+                String[] commands = input.trim().split("&");
 
-            String[] commands = input.trim().split("&");
-
-            for (String command : commands) {
-                Stack<Command> cmdStk = Parser.parseCommands(command);
-                CommandExecutor executor = new CommandExecutor();
-                executor.executeCommands(cmdStk);
+                for (String command : commands) {
+                    Stack<Command> cmdStk = Parser.parseCommands(command);
+                    CommandExecutor executor = new CommandExecutor();
+                    executor.executeCommands(cmdStk);
+                }
             }
         }
     }

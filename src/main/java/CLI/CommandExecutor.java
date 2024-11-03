@@ -41,6 +41,7 @@ public class CommandExecutor implements IExecutor {
         command.execute(cmd.args());
     }
 
+    @SuppressWarnings("unused")
     public void displayHelp(String[] args) {
         if (args.length == 0) {
             commandFactory.getAllHelpCommands().forEach((name, help) -> {

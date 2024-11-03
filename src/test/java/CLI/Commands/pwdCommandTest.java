@@ -29,7 +29,7 @@ class pwdCommandTest {
 
     @Test
     public void pwdTest() {
-        CLIContext context = CLIContext.createInstance("~");
+        CLIContext.createInstance("~");
         IExecute cmd = new pwdCommand();
         cmd.execute();
 
@@ -42,7 +42,6 @@ class pwdCommandTest {
     @Test
     public void pwdRootTest() {
         CLIContext context = CLIContext.createInstance("/");
-        context.setCurrentDirectory("/");
         IExecute cmd = new pwdCommand(context);
         cmd.execute();
 
