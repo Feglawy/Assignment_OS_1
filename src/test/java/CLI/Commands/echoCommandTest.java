@@ -14,23 +14,14 @@ class echoCommandTest {
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
-    private CLIContext context;
     private IExecuteArgs cmd;
 
     @BeforeEach
     public void setUp() {
-        context = new CLIContext("~");
-        cmd = new echoCommand(context);
+        cmd = new echoCommand();
 
         // Redirect System.out to capture output
         System.setOut(new PrintStream(outputStream));
-    }
-
-    @AfterEach
-    public void tearDown() {
-        // Restore the original System.out
-        System.setOut(originalOut);
-        outputStream.reset();
     }
 
     @Test
@@ -45,5 +36,12 @@ class echoCommandTest {
         String actualOutput = outputStream.toString().trim();
 
         assertEquals(expectedOutput, actualOutput);
+    }
+
+    @AfterEach
+    public void tearDown() {
+        // Restore the original System.out
+        System.setOut(originalOut);
+        outputStream.reset();
     }
 }

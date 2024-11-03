@@ -12,7 +12,7 @@ import java.io.PrintStream;
 import java.util.Stack;
 
 public class OperatorHandler {
-    public static void handle(Stack<Command>stack, Command opcmd, CLIContext context,CommandFactory commandFactory, IExecutor execute) {
+    public static void handle(Stack<Command>stack, Command opcmd, CommandFactory commandFactory, IExecutor execute) {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream originalOut = System.out;
 
@@ -22,13 +22,13 @@ public class OperatorHandler {
         switch (opcmd.operator()) {
             case ">>" -> {
                 String fileName = opcmd.args()[0];
-                String filePath = new File(context.getCurrentDirectory(), fileName).getAbsolutePath();
+                String filePath = new File(CLIContext.getInstance().getCurrentDirectory(), fileName).getAbsolutePath();
                 redirectOperator.redirect(outputStream.toString(), filePath, true);
                 outputStream.reset();
             }
             case ">" -> {
                 String fileName = opcmd.args()[0];
-                String filePath = new File(context.getCurrentDirectory(), fileName).getAbsolutePath();
+                String filePath = new File(CLIContext.getInstance().getCurrentDirectory(), fileName).getAbsolutePath();
                 redirectOperator.redirect(outputStream.toString(), filePath, false);
                 outputStream.reset();
             }

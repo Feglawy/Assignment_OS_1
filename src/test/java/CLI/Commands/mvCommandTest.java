@@ -23,8 +23,8 @@ class mvCommandTest {
 
     @BeforeEach
     public void setUp() {
-        context = new CLIContext();
-        mv = new mvCommand(context);
+        context = CLIContext.getInstance();
+        mv = new mvCommand();
 
         dir = new File(context.getCurrentDirectory(), TEMP_TEST_DIR);
         file = new File(context.getCurrentDirectory(), TEMP_TEST_FILE);

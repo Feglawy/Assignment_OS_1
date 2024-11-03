@@ -5,6 +5,7 @@ import CLI.CLIContext;
 import java.io.File;
 
 public class rmCommand extends Command implements IExecuteArgs, IHelp {
+    public rmCommand() {super();}
     public rmCommand(CLIContext context) {
         super(context);
     }

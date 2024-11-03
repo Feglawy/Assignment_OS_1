@@ -9,22 +9,22 @@ public class CommandFactory {
     private final Map<String, IExecuteArgs> executeMap = new HashMap<>();
     private final Map<String, IHelp> helpMap = new HashMap<>();
 
-    public CommandFactory(CLIContext context) {
-        registerCommands(context);
+    public CommandFactory() {
+        registerCommands();
     }
 
-    private void registerCommands(CLIContext context) {
-        addCommand("pwd", new pwdCommand(context));
-        addCommand("cd", new cdCommand(context));
-        addCommand("ls", new lsCommand(context));
-        addCommand("echo", new echoCommand(context));
-        addCommand("cat", new catCommand(context));
-        addCommand("touch", new touchCommand(context));
-        addCommand("mkdir", new mkdirCommand(context));
-        addCommand("mv", new mvCommand(context));
-        addCommand("rm", new rmCommand(context));
-        addCommand("rmdir", new rmdirCommand(context));
-        addCommand("exit", new exitCommand(context));
+    private void registerCommands() {
+        addCommand("pwd", new pwdCommand());
+        addCommand("cd", new cdCommand());
+        addCommand("ls", new lsCommand());
+        addCommand("echo", new echoCommand());
+        addCommand("cat", new catCommand());
+        addCommand("touch", new touchCommand());
+        addCommand("mkdir", new mkdirCommand());
+        addCommand("mv", new mvCommand());
+        addCommand("rm", new rmCommand());
+        addCommand("rmdir", new rmdirCommand());
+        addCommand("exit", new exitCommand());
     }
 
     private void addCommand(String name, Command command) {

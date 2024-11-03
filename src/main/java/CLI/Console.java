@@ -10,7 +10,7 @@ public class Console {
     private final CLIContext context;
 
     public Console() {
-        context = new CLIContext();
+        context = CLIContext.getInstance();
     }
 
     public void start() {
@@ -25,7 +25,7 @@ public class Console {
 
             for (String command : commands) {
                 Stack<Command> cmdStk = Parser.parseCommands(command);
-                CommandExecutor executor = new CommandExecutor(context);
+                CommandExecutor executor = new CommandExecutor();
                 executor.executeCommands(cmdStk);
             }
         }

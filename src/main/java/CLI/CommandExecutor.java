@@ -10,9 +10,9 @@ import java.util.Stack;
 public class CommandExecutor implements IExecutor {
     CLIContext context;
     CommandFactory commandFactory;
-    public CommandExecutor(CLIContext context) {
-        this.context = context;
-        this.commandFactory = new CommandFactory(context);
+    public CommandExecutor() {
+        this.context = CLIContext.getInstance();
+        this.commandFactory = new CommandFactory();
     }
 
     @Override
@@ -20,7 +20,7 @@ public class CommandExecutor implements IExecutor {
         while (!stack.isEmpty()) {
             Command cmd = stack.pop();
             if (cmd.hasOperator()) {
-                OperatorHandler.handle(stack, cmd, context, commandFactory, this);
+                OperatorHandler.handle(stack, cmd, commandFactory, this);
                 return;
             }
             executeCommand(cmd);

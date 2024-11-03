@@ -23,8 +23,8 @@ class lsCommandTest {
 
     @BeforeEach
     public void setUp() {
-        context = new CLIContext();
-        ls = new lsCommand(context);
+        context = CLIContext.getInstance();
+        ls = new lsCommand();
 
         File dir = new File(context.getCurrentDirectory(), TEST_DIR);
 
@@ -74,6 +74,7 @@ class lsCommandTest {
             child.delete();
         }
         dir.delete();
+        context.setCurrentDirectory("../");
         System.setOut(originalOut);
         outputStream.reset();
     }

@@ -14,8 +14,8 @@ class cdCommandTest {
 
     @BeforeEach
     public void setUp() {
-        context = new CLIContext();
-        cmd = new cdCommand(context);
+        context = CLIContext.getInstance();
+        cmd = new cdCommand();
     }
 
     @Test

@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class touchCommand extends Command implements IExecuteArgs, IHelp {
+    public touchCommand() {super();}
     public touchCommand(CLIContext context) {
         super(context);
     }

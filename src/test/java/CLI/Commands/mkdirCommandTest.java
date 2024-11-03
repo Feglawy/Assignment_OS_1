@@ -16,8 +16,8 @@ class mkdirCommandTest {
 
     @BeforeEach
     public void setUp() {
-        context = new CLIContext();
-        mk = new mkdirCommand(context);
+        context = CLIContext.getInstance();
+        mk = new mkdirCommand();
     }
 
     @Test

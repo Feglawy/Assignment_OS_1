@@ -17,8 +17,8 @@ class rmdirCommandTest {
 
     @BeforeEach
     public void setUp() {
-        context = new CLIContext();
-        rmdir = new rmCommand(context);
+        context = CLIContext.getInstance();
+        rmdir = new rmCommand();
     }
 
     @Test

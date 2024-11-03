@@ -9,12 +9,31 @@ import java.nio.file.Paths;
 public class CLIContext
 {
     private String currentDirectory;
-    public CLIContext() {
+    private static CLIContext instance;
+
+    private CLIContext() {
         setCurrentDirectory(System.getProperty("user.dir"));
     }
 
-    public CLIContext(String dir) {
-        setCurrentDirectory(dir);
+    private CLIContext(String path) {
+        setCurrentDirectory(path);
+    }
+
+    public static CLIContext getInstance() {
+        if (instance == null) {
+            instance = new CLIContext();
+        }
+        return instance;
+    }
+
+    public static CLIContext createInstance() {
+        instance = new CLIContext();
+        return  instance;
+    }
+
+    public static CLIContext createInstance(String path) {
+        instance = new CLIContext(path);
+        return  instance;
     }
 
     public String getCurrentDirectory() {
@@ -54,5 +73,6 @@ public class CLIContext
     private void redirectToHome() {
         this.currentDirectory = System.getProperty("user.home");
     }
+
 }
 

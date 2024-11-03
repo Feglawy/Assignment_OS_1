@@ -8,10 +8,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class mvCommand extends Command implements IExecuteArgs, IHelp {
+    public mvCommand() {super();}
     public mvCommand(CLIContext context) {
         super(context);
     }
-
 
     @Override
     public void execute(String[] args) {

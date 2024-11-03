@@ -5,6 +5,7 @@ import CLI.CLIContext;
 import java.io.File;
 
 public class mkdirCommand extends Command implements IExecuteArgs, IHelp {
+    public mkdirCommand() {super();}
     public mkdirCommand(CLIContext context) {
         super(context);
     }

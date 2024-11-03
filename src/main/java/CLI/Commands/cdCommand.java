@@ -5,6 +5,7 @@ import CLI.CLIContext;
 import java.io.File;
 
 public class cdCommand extends Command implements IExecuteArgs, IHelp {
+    public cdCommand() {super();}
     public cdCommand(CLIContext context) {
         super(context);
     }

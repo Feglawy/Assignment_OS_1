@@ -16,8 +16,8 @@ class touchCommandTest {
 
     @BeforeEach
     public void setUp() {
-        context = new CLIContext();
-        touch = new touchCommand(context);
+        context = CLIContext.getInstance();
+        touch = new touchCommand();
     }
 
     @Test

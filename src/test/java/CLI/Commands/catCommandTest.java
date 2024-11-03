@@ -13,20 +13,45 @@ class catCommandTest {
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
-    private CLIContext context;
     private IExecuteArgs cmd;
 
     private final String fileName = "a.txt";
     private File file;
 
+    String ExpectedOutput = "Hello, World!";
+
+    private void writeToFile(String str) {
+        try (FileWriter fileWriter = new FileWriter(file, false)) {
+            fileWriter.write(str);
+        } catch (IOException e) {
+            System.err.println("Couldn't write to file");
+        }
+    }
+
+
     @BeforeEach
     public void setUp() {
-        context = new CLIContext("~");
-        cmd = new catCommand(context);
-        file = new File(context.getCurrentDirectory(), fileName); // make sure that the file exists
+        cmd = new catCommand();
+        file = new File(CLIContext.getInstance().getCurrentDirectory(), fileName); // make sure that the file exists
+
+        writeToFile(ExpectedOutput);
 
         // Redirect System.out to capture output
         System.setOut(new PrintStream(outputStream));
+    }
+
+    @Test
+    void catShouldNotThrowTest() {
+
+        assertDoesNotThrow(()-> {cmd.execute(new String[]{""});}); // missing argument
+
+    }
+
+    @Test
+    void catTest() {
+        cmd.execute(new String[]{fileName});
+        String output = outputStream.toString().trim();
+        assertEquals(ExpectedOutput, output);
     }
 
     @AfterEach
@@ -37,29 +62,6 @@ class catCommandTest {
 
         //noinspection ResultOfMethodCallIgnored
         file.delete(); // deletes the file to reset it
-    }
-
-    private void writeToFile(String str) {
-        try (FileWriter fileWriter = new FileWriter(file, false)) {
-            fileWriter.write(str);
-        } catch (IOException e) {
-            System.err.println("Couldn't write to file");
-        }
-    }
-
-    @Test
-    void catShouldNotThrowTest() {
-        assertDoesNotThrow(()-> {cmd.execute(new String[]{""});}); // missing argument
-    }
-
-    @Test
-    void catTest() {
-        String ExpectedOutput = "Hello, World!";
-        writeToFile(ExpectedOutput);
-
-        cmd.execute(new String[]{fileName});
-        String output = outputStream.toString().trim();
-        assertEquals(ExpectedOutput, output);
     }
 
 }

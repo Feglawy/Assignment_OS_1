@@ -5,6 +5,7 @@ import CLI.CLIContext;
 import java.io.File;
 
 public class rmdirCommand extends Command implements IExecuteArgs, IHelp {
+    public rmdirCommand() {super();}
     public rmdirCommand(CLIContext context) {
         super(context);
     }

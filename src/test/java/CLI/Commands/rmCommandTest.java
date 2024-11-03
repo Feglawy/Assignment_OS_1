@@ -17,8 +17,8 @@ class rmCommandTest {
 
     @BeforeEach
     public void setUp() {
-        context = new CLIContext();
-        rm = new rmCommand(context);
+        context = CLIContext.getInstance();
+        rm = new rmCommand();
     }
 
     @Test

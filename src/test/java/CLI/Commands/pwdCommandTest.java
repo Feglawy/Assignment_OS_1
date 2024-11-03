@@ -29,8 +29,8 @@ class pwdCommandTest {
 
     @Test
     public void pwdTest() {
-        CLIContext context = new CLIContext("~");
-        IExecute cmd = new pwdCommand(context);
+        CLIContext context = CLIContext.createInstance("~");
+        IExecute cmd = new pwdCommand();
         cmd.execute();
 
         String ExpectedOutput = System.getProperty("user.home");
@@ -41,7 +41,8 @@ class pwdCommandTest {
 
     @Test
     public void pwdRootTest() {
-        CLIContext context = new CLIContext("/");
+        CLIContext context = CLIContext.createInstance("/");
+        context.setCurrentDirectory("/");
         IExecute cmd = new pwdCommand(context);
         cmd.execute();
 

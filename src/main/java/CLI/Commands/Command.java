@@ -7,4 +7,5 @@ public abstract class Command {
     protected Command (CLIContext context) {
         this.context = context;
     }
+    protected Command () { this.context = CLIContext.getInstance(); }
 }
