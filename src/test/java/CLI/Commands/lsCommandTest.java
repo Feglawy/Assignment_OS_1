@@ -3,6 +3,7 @@ package CLI.Commands;
 import CLI.CLIContext;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -50,16 +51,19 @@ class lsCommandTest {
     }
 
     @Test
+    @Disabled("Not implemented yet")
     public void lsHiddenTest() {
 
     }
 
     @Test
+    @Disabled("Not implemented yet")
     public void lsRevertTest() {
 
     }
 
     @Test
+    @Disabled("Not implemented yet")
     public void lsHiddenRevertTest() {
 
     }
