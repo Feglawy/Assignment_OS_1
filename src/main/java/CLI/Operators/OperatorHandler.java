@@ -19,7 +19,9 @@ public class OperatorHandler {
 
         System.setOut(new PrintStream(outputStream));
 
-        execute.executeCommands(stack);
+        if (stack.size() > 0) {
+            execute.executeCommands(stack);
+        }
         switch (opcmd.operator()) {
             case ">>" -> {
                 String fileName = opcmd.args()[0];
